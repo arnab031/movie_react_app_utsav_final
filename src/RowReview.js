@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
-import "./Row.css";
+import "./RowReview.css";
 import axios from "./axios";
 // import requests from "./Requests";
-import Post from "./Post";
+import ReviewPost from "./ReviewPost"
 
-function Row({
+function RowReview({
   title,
-  fetchUrl,
-  isLargeRow = false,
-  Upcoming = false,
-  Popular = false,
-  Top_Rated = false,
+  fetchUrl
 }) {
-  const [movies, setMovies] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
+  
   const [pages, setPages] = useState(0);
 
   
@@ -21,14 +18,14 @@ function Row({
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      setMovies(request.data.results);
+      setReviews(request.data.results);
       setPages(Math.round(request.data.results.length / dataLimit));
       return request;
     }
     fetchData();
   }, [fetchUrl]);
 
-  const RenderComponent = Post;
+  const RenderComponent = ReviewPost;
   const pageLimit = pages;
 
   // const [pages] = useState(Math.round(movies.length / dataLimit));
@@ -50,7 +47,7 @@ function Row({
   const getPaginatedData = () => {
     const startIndex = currentPage * dataLimit - dataLimit;
     const endIndex = startIndex + dataLimit;
-    return movies.slice(startIndex, endIndex);
+    return reviews.slice(startIndex, endIndex);
   };
 
   const getPaginationGroup = () => {
@@ -59,41 +56,21 @@ function Row({
   };
 
   return (
-    // <div className="row">
-    //   <h2>{title}</h2>
-    //   <div className="row__posters">
-    //     {movies?.map(
-    //       (movie,i) =>
-    //         ((isLargeRow && movie.poster_path) ||
-    //         (!isLargeRow && movie.backdrop_path)) && (
-    //           <div key={i}>
-    //           <img
-    //             className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-    //             src={`${base_url}${
-    //               isLargeRow ? movie.poster_path : movie.backdrop_path
-    //             }`}
-    //             alt={movie.name}
-    //           />
-    //           {/* <h4>{movie.title}</h4>
-    //           <p>{movie.genres?.movie.genres.name}</p> */}
-    //         </div>
-    //         )
-    //     )}
-    //   </div>
-    // </div>
     <div className="item">
-      <h1>{title}</h1>
-      <div>
-      <main className="grid">
-      {getPaginatedData().map((d, idx) => (
-            <RenderComponent key={idx} data={d} isLargeRow={isLargeRow} Upcoming={Upcoming}  Popular={Popular} Top_Rated={Top_Rated}/>
-          ))}
-        </main></div>
-        {/* <div className="dataContainer">
+      {/* <h1>{title}</h1> */}
+      <section id="testimonials">
+      <div className="testimonial-heading">
+        {/* <span>Comments</span> */}
+        <h1>Comments</h1>
+      </div>
+      
+      <div className="testimonial-box-container">
           {getPaginatedData().map((d, idx) => (
-            <RenderComponent key={idx} data={d} isLargeRow={isLargeRow} Upcoming={Upcoming}  Popular={Popular} Top_Rated={Top_Rated}/>
+            <RenderComponent key={idx} data={d}/>
           ))}
-        </div> */}
+          </div>
+        </section>
+        
 
         {/* show the pagiantion
               it consists of next and previous buttons
@@ -106,7 +83,7 @@ function Row({
             onClick={goToPreviousPage}
             className={`prev ${currentPage === 1 ? "disabled" : ""}`}
           >
-            Prev
+            prev
           </button>
 
           {/* show page numbers */}
@@ -127,7 +104,7 @@ function Row({
             onClick={goToNextPage}
             className={`next ${currentPage === pages ? "disabled" : ""}`}
           >
-            Next
+            next
           </button>
         </div>
       
@@ -136,4 +113,4 @@ function Row({
   );
 }
 
-export default Row;
+export default RowReview;

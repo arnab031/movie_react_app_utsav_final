@@ -9,7 +9,7 @@ function Banner() {
 
   useEffect(() => {
     async function fetchData() {
-      const request = await axios.get(requests.fetchNetflixOriginals);
+      const request = await axios.get(requests.fetchTopRatedMovies);
       setMovie(
         request.data.results[
           Math.floor(Math.random() * request.data.results.length - 1)
@@ -19,7 +19,7 @@ function Banner() {
     }
     fetchData();
   }, []);
-  console.log(movie);
+  // console.log(movie);
 
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
@@ -36,8 +36,8 @@ function Banner() {
       <div className="banner__contents">
         <h1 className="banner__title">{movie?.title||movie?.name||movie?.original_name}</h1>
         <div className="banner__buttons">
-          <button className="banner__button">Play</button>
-          <button className="banner__button">My List</button>
+          <button className="banner__button">Top Rated</button>
+          {/* <button className="banner__button">My List</button> */}
         </div>
         <h1 className="banner__description">
           {truncate(
@@ -47,7 +47,7 @@ function Banner() {
         </h1>
       </div>
 
-      <div className="banner--fadeBottom"></div>
+      {/* <div className="banner--fadeBottom"></div> */}
     </header>
   );
 }
