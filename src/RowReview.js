@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./RowReview.css";
+import styles from "./RowReview.module.css";
 import axios from "./axios";
 // import requests from "./Requests";
 import ReviewPost from "./ReviewPost"
@@ -56,15 +56,15 @@ function RowReview({
   };
 
   return (
-    <div className="item">
+    <div className={styles.item}>
       {/* <h1>{title}</h1> */}
-      <section id="testimonials">
-      <div className="testimonial-heading">
+      <section id={styles.testimonials}>
+      <div className={styles.testimonial_heading}>
         {/* <span>Comments</span> */}
         <h1>Comments</h1>
       </div>
       
-      <div className="testimonial-box-container">
+      <div className={styles.testimonial_box_container}>
           {getPaginatedData().map((d, idx) => (
             <RenderComponent key={idx} data={d}/>
           ))}
@@ -77,11 +77,11 @@ function RowReview({
               along with page numbers, in our case, 5 page
               numbers at a time
           */}
-        <div className="pagination">
+        <div className={styles.pagination}>
           {/* previous button */}
           <button
             onClick={goToPreviousPage}
-            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+            className={`${styles.prev} ${currentPage === 1 ? styles.disabled : ""}`}
           >
             prev
           </button>
@@ -91,8 +91,8 @@ function RowReview({
             <button
               key={index}
               onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
+              className={`${styles.paginationItem} ${
+                currentPage === item ? styles.active : null
               }`}
             >
               <span>{item}</span>
@@ -102,7 +102,7 @@ function RowReview({
           {/* next button */}
           <button
             onClick={goToNextPage}
-            className={`next ${currentPage === pages ? "disabled" : ""}`}
+            className={`${styles.next} ${currentPage === pages ? styles.disabled : ""}`}
           >
             next
           </button>

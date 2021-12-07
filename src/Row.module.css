@@ -118,3 +118,14 @@
   margin-left: 10px;
   color: #fff;
 }
+
+.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: #999;
+}
+.active{
+  border: 1px solid #888;
+  color: #888;
+  pointer-events: none;
+}

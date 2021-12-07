@@ -1,11 +1,11 @@
 import React from "react";
 import Row from "./Row";
-import "./RelatedMovies.css";
+import styles from "./RelatedMovies.module.css";
 
 function RelatedMovies({id}) {
     const API_KEY = "db75be3f6da59e6c54d0b9f568d19d16";
   return (
-    <div className="relatedMovies">
+    <div className={styles.relatedMovies}>
       <div id="Related Movies">
         <Row
           title="Similar Movies"

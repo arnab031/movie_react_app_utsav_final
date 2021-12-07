@@ -1,5 +1,4 @@
 import React from "react";
-import "./SearchItem.css";
 import { useParams } from "react-router-dom";
 import Row from "./Row";
 

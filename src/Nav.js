@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Nav.css";
+import styles from "./Nav.module.css";
 import { Link } from "react-scroll";
 import { BiSearch } from "react-icons/bi";
 import { BiRightArrowAlt } from "react-icons/bi";
@@ -54,24 +54,24 @@ function Nav() {
     //     <img className="nav__avatar" src={avatar_logo} alt="avatar logo" />
     //   </div>
     // </div>
-    <div className={`nav ${show && "nav__black"}`}>
-      <div className="wrapper">
+    <div className={`${styles.nav} ${show}`}>
+      <div className={styles.wrapper}>
         <nav>
           <input type="checkbox" id="show-search" />
           <input type="checkbox" id="show-menu" />
-          <label htmlFor="show-menu" className="menu-icon">
+          <label htmlFor="show-menu" className={styles.menu_icon}>
             <FaBars />
           </label>
-          <div className="content">
+          <div className={styles.content}>
             <div
-              className="logo"
+              className={styles.logo}
               onClick={() => {
                 history.push(`/`);
               }}
             >
               Movie
             </div>
-            <ul className="links">
+            <ul className={styles.links}>
               <li>
                 <Link
                   activeClass="active"
@@ -100,17 +100,17 @@ function Nav() {
               </li>
             </ul>
           </div>
-          <label htmlFor="show-search" className="search-icon">
+          <label htmlFor="show-search" className={styles.search_icon}>
             <BiSearch />
           </label>
-          <div className="search-box">
+          <div className={styles.search_box}>
             <input
               type="text"
               placeholder="Type Something to Search..."
               onChange={(e) => inputOnChange(e)}
               required
             />
-            <button type="submit" className="go-icon" onClick={search}>
+            <button type="submit" className={styles.go_icon} onClick={search}>
               <BiRightArrowAlt />
             </button>
           </div>

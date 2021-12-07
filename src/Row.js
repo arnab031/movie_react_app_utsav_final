@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Row.css";
+import styles from "./Row.module.css";
 import axios from "./axios";
 // import requests from "./Requests";
 import Post from "./Post";
@@ -81,10 +81,10 @@ function Row({
     //     )}
     //   </div>
     // </div>
-    <div className="item">
+    <div className={styles.item}>
       <h1>{title}</h1>
       <div>
-      <main className="grid">
+      <main className={styles.grid}>
       {getPaginatedData().map((d, idx) => (
             <RenderComponent key={idx} data={d} isLargeRow={isLargeRow} Upcoming={Upcoming}  Popular={Popular} Top_Rated={Top_Rated}/>
           ))}
@@ -100,11 +100,11 @@ function Row({
               along with page numbers, in our case, 5 page
               numbers at a time
           */}
-        <div className="pagination">
+        <div className={styles.pagination}>
           {/* previous button */}
           <button
             onClick={goToPreviousPage}
-            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+            className={`${styles.prev} ${currentPage === 1 ? styles.disabled : ""}`}
           >
             Prev
           </button>
@@ -114,8 +114,8 @@ function Row({
             <button
               key={index}
               onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
+              className={`${styles.paginationItem} ${
+                currentPage === item ? styles.active : null
               }`}
             >
               <span>{item}</span>
@@ -125,7 +125,7 @@ function Row({
           {/* next button */}
           <button
             onClick={goToNextPage}
-            className={`next ${currentPage === pages ? "disabled" : ""}`}
+            className={`${styles.next} ${currentPage === pages ? styles.disabled : ""}`}
           >
             Next
           </button>

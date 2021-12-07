@@ -1,5 +1,5 @@
 import React from "react";
-import "./Post.css";
+import styles from "./Post.module.css";
 import { useHistory } from "react-router-dom";
 
 function truncate(string, n) {
@@ -39,25 +39,27 @@ function Post(props) {
 
       <img src={base_url} alt="movie_poster" /> */}
 
-
-      <div className="gridItem">
+      <div className={styles.gridItem}>
         <article>
           <img src={base_url} alt="" />
-          <div className="text">
+          <div className={styles.text}>
             <h3>{title}</h3>
-            <h6>{genres && genres.name}</h6><br/>
-            <p>
-            {truncate(overview, 150)}
-            </p><br/>
+            <h6>{genres && genres.name}</h6>
+            <br />
+            <p>{truncate(overview, 150)}</p>
+            <br />
             {props.Upcoming && <p>Release Date : {props.data.release_date}</p>}
-        {props.Popular && <p>Popularity : {props.data.popularity}</p>}<br/>
-        {props.Top_Rated && <p>Vote Count : {props.data.vote_count}</p> }<br/>
-        
-        {props.Top_Rated && <p>Vote Average : {props.data.vote_average}</p>}<br/>
+            {props.Popular && <p>Popularity : {props.data.popularity}</p>}
+            <br />
+            {props.Top_Rated && <p>Vote Count : {props.data.vote_count}</p>}
+            <br />
+
+            {props.Top_Rated && <p>Vote Average : {props.data.vote_average}</p>}
+            <br />
             <button>View More</button>
           </div>
         </article>
-        </div>
+      </div>
     </div>
   );
 }

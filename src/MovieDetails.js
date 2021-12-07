@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./MovieDetails.css";
+import styles from "./MovieDetails.module.css";
 import { useParams } from "react-router-dom";
 import RelatedMovies from "./RelatedMovies";
 import Review from "./Review";
@@ -30,42 +30,42 @@ function MovieDetails() {
   
 
   return (
-    <div className="movie_details">
+    <div className={styles.movie_details}>
       <header
-        className="banner_movieDetails"
+        className={styles.banner_movieDetails}
         style={{
           backgroundSize: "cover",
           backgroundImage: `url("https://image.tmdb.org/t/p/original/${movieDetails?.backdrop_path}")`,
           backgroundPosition: "center center",
         }}
       >
-        <div className="banner__movieContents">
-          <h1 className="banner__title">
+        <div className={styles.banner__movieContents}>
+          <h1 className={styles.banner__title}>
             {movieDetails?.title ||
               movieDetails?.name ||
               movieDetails?.original_name}
           </h1>
-          <div className="details">
-          <div className="sub__items">
+          <div className={styles.details}>
+          <div className={styles.sub__items}>
             {movieDetails.spoken_languages &&
               movieDetails.spoken_languages.map((language, i) => (
                 <h3 key={i}>{language.english_name}</h3>
               ))}
               
           </div>
-          <div className="sub__items">
+          <div className={styles.sub__items}>
             <p>Popularity : {movieDetails && movieDetails.popularity}</p>
           </div>
-          <div className="sub__items">
+          <div className={styles.sub__items}>
             {movieDetails.genres &&
               movieDetails.genres.map((genre, i) => (
                 <h3 key={i}>{genre.name}</h3>
               ))}
           </div>
-          <div className="sub__items">
+          <div className={styles.sub__items}>
             <p> Release Date : {movieDetails && movieDetails.release_date}</p>
           </div>
-          <div className="sub__items">
+          <div className={styles.sub__items}>
             <p> Origin Countries : {" "}</p>
             {unique &&
               unique.map((country, i) => (
@@ -74,16 +74,16 @@ function MovieDetails() {
           </div>
           </div>
           
-          <div className="sub__details">
+          <div className={styles.sub__details}>
             <p>Vote Count : {movieDetails && movieDetails.vote_count}</p>
             <p>Vote Average : {movieDetails && movieDetails.vote_average}</p>
             <p>Budget : {movieDetails && movieDetails.budget}</p>
             <p>Revenue : {movieDetails && movieDetails.revenue}</p>
           </div>
-          <div className="banner__buttons">
+          <div className={styles.banner__buttons}>
             {movieDetails.homepage && (
               <button
-                className="banner__button"
+                className={styles.banner__button}
                 onClick={() => {
                   window.location.href = `${movieDetails.homepage}`;
                 }}
@@ -93,7 +93,7 @@ function MovieDetails() {
             )}
             {/* <button className="banner__button">My List</button> */}
           </div>
-          <h1 className="banner__movieDescription">{movieDetails?.overview}</h1>
+          <h1 className={styles.banner__movieDescription}>{movieDetails?.overview}</h1>
         </div>
 
         
