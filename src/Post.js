@@ -1,3 +1,4 @@
+/* This component is used for single movie card */
 import React from "react";
 import styles from "./Post.module.css";
 import { useHistory } from "react-router-dom";

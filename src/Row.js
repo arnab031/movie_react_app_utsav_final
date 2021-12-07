@@ -1,3 +1,4 @@
+/* This component is used for rendering movie section */
 import React, { useEffect, useState } from "react";
 import styles from "./Row.module.css";
 import axios from "./axios";
@@ -27,9 +28,10 @@ function Row({
     fetchData();
   }, [fetchUrl]);
 
-  const RenderComponent = Post;
+  // const RenderComponent = Post;
   const pageLimit = pages;
 
+  /* Start Pagination function */
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -56,13 +58,15 @@ function Row({
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
   };
 
+  /* End Pagination function */
+
   return (
     <div className={styles.item}>
       <h1>{title}</h1>
       <div>
         <main className={styles.grid}>
           {getPaginatedData().map((d, idx) => (
-            <RenderComponent
+            <Post
               key={idx}
               data={d}
               isLargeRow={isLargeRow}

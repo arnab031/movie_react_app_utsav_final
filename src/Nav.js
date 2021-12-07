@@ -1,3 +1,4 @@
+/* This component for NavBar */ 
 import React, { useEffect, useState } from "react";
 import "./Nav.css";
 import { Link } from "react-scroll";
@@ -23,7 +24,6 @@ function Nav() {
   };
 
   const search = () => {
-    console.log(change);
     history.push(`/search/${change}`);
   };
 

@@ -12,16 +12,16 @@ function App() {
   return (
     <Router>
       <div className={styles.app}>
-        <Nav/>
+        <Nav/>    {/* This is for Nav Bar*/}
         <Switch>
           <Route path="/movie_details/:id">
-          <MovieDetails />
+          <MovieDetails />   {/* This is for Movie Details */ }
           </Route>
           <Route path="/search/:keyword">
           <SearchItem />
           </Route>
           <Route path="/">
-            <HomeScreen/>
+            <HomeScreen/> {/* This is our landing page */ }
           </Route>
         </Switch>
       </div>

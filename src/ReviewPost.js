@@ -1,3 +1,4 @@
+/* This component is used for rendering single review */
 import React from "react";
 import styles from "./ReviewPost.module.css";
 import validator from "validator";

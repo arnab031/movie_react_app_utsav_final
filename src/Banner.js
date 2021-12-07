@@ -1,3 +1,5 @@
+/* This is for Banner under NavBar */
+
 import React, { useEffect, useState } from "react";
 import styles from "./Banner.module.css";
 import axios from "./axios";
@@ -19,6 +21,7 @@ function Banner() {
     fetchData();
   }, []);
 
+  // This function is used for truncating the description
   function truncate(string, n) {
     return string?.length > n ? string.substr(0, n - 1) + "..." : string;
   }

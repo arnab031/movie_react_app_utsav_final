@@ -1,3 +1,4 @@
+/* This component is used for finding similar movies */
 import React from "react";
 import Row from "./Row";
 import styles from "./RelatedMovies.module.css";

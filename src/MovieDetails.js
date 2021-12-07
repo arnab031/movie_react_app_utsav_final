@@ -1,3 +1,4 @@
+/* This section is for movie details */
 import React, { useEffect, useState } from "react";
 import styles from "./MovieDetails.module.css";
 import { useParams } from "react-router-dom";
@@ -21,6 +22,7 @@ function MovieDetails() {
       });
   }, [id]);
 
+  // This function is used for selecting the unique countries
   const [unique_countries] = useState([]);
   movieDetails.production_companies &&
     movieDetails.production_companies.map((country, i) =>

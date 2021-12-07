@@ -1,3 +1,4 @@
+/* This component is used for finding searched movies */
 import React from "react";
 import { useParams } from "react-router-dom";
 import Row from "./Row";

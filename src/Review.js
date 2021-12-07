@@ -1,3 +1,4 @@
+/* This component is used for finding reviews of a movie */
 import React from "react";
 import RowReview from "./RowReview";
 import dotenv from "dotenv";

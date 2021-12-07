@@ -1,5 +1,4 @@
 import React from "react";
-
 import Banner from "./Banner";
 import requests from "./Requests";
 import Row from "./Row";
@@ -10,7 +9,7 @@ function HomeScreen() {
       {/* Banner */}
       <Banner />
 
-      {/*Row*/}
+      {/* Row - For showing movie cards */}
       <div id="Upcoming Movies">
         <Row
           title="Upcoming Movies"

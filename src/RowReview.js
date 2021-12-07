@@ -1,3 +1,4 @@
+/* This component is used for rendering post section */
 import React, { useEffect, useState } from "react";
 import styles from "./RowReview.module.css";
 import axios from "./axios";
@@ -20,9 +21,10 @@ function RowReview({ fetchUrl }) {
     fetchData();
   }, [fetchUrl]);
 
-  const RenderComponent = ReviewPost;
+  // const RenderComponent = ReviewPost;
   const pageLimit = pages;
 
+  /* Start Pagination function */
   const [currentPage, setCurrentPage] = useState(1);
 
   function goToNextPage() {
@@ -48,22 +50,28 @@ function RowReview({ fetchUrl }) {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
   };
+  /* End Pagination function */
+
+  let show;
+  if(reviews.length>0){
+    show = true
+  }
 
   return (
     <div className={styles.item}>
-      <section id={styles.testimonials}>
+      {show && <section id={styles.testimonials}>
         <div className={styles.testimonial_heading}>
           <h1>Comments</h1>
         </div>
 
         <div className={styles.testimonial_box_container}>
           {getPaginatedData().map((d, idx) => (
-            <RenderComponent key={idx} data={d} />
+            <ReviewPost key={idx} data={d} />
           ))}
         </div>
-      </section>
+      </section>}
 
-      <div className={styles.pagination}>
+      {show && <div className={styles.pagination}>
         {/* previous button */}
         <button
           onClick={goToPreviousPage}
@@ -71,7 +79,7 @@ function RowReview({ fetchUrl }) {
             currentPage === 1 ? styles.disabled : ""
           }`}
         >
-          prev
+          Prev
         </button>
 
         {/* show page numbers */}
@@ -94,9 +102,9 @@ function RowReview({ fetchUrl }) {
             currentPage === pages ? styles.disabled : ""
           }`}
         >
-          next
+          Next
         </button>
-      </div>
+      </div>}
     </div>
   );
 }
