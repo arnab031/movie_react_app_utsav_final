@@ -10,7 +10,7 @@ function HomeScreen() {
       {/* Banner */}
       <Banner />
 
-      {/* Row */}
+      {/*Row*/}
       <div id="Upcoming Movies">
         <Row
           title="Upcoming Movies"
