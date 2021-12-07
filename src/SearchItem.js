@@ -1,10 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Row from "./Row";
+import dotenv from "dotenv";
 
 function SearchItem() {
+  dotenv.config();
   const { keyword } = useParams();
-  const API_KEY = "db75be3f6da59e6c54d0b9f568d19d16";
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   return <div>
       <Row

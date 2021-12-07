@@ -11,7 +11,6 @@ function Post(props) {
   const { id, title, genres, overview, backdrop_path } = props.data;
 
   const base_url = `https://image.tmdb.org/t/p/w500${backdrop_path}`;
-  // console.log(props.data.release_date);
 
   return (
     <div
@@ -20,25 +19,6 @@ function Post(props) {
         history.push(`/movie_details/${id}`);
       }}
     >
-      {/* <small>{id}</small> */}
-      {/* <div>
-        <h1>{title}</h1>
-      </div>
-      <div>{genres && <p>{genres.name}</p>}</div>
-      <div>{truncate(overview, 150)}</div>
-      <div>
-        {props.Upcoming && <p>{props.data.release_date}</p>}
-        {props.Popular && <p>{props.data.popularity}</p>}
-      </div>
-
-      <div>
-        {props.Top_Rated && <p>{props.data.vote_count}</p>}
-        {"  "}
-        {props.Top_Rated && <p>{props.data.vote_average}</p>}
-      </div>
-
-      <img src={base_url} alt="movie_poster" /> */}
-
       <div className={styles.gridItem}>
         <article>
           <img src={base_url} alt="" />

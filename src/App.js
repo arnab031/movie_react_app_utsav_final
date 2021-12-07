@@ -13,7 +13,6 @@ function App() {
     <Router>
       <div className={styles.app}>
         <Nav/>
-        {/* <HomeScreen /> */}
         <Switch>
           <Route path="/movie_details/:id">
           <MovieDetails />

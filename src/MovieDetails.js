@@ -3,21 +3,21 @@ import styles from "./MovieDetails.module.css";
 import { useParams } from "react-router-dom";
 import RelatedMovies from "./RelatedMovies";
 import Review from "./Review";
+import dotenv from "dotenv";
 
 function MovieDetails() {
+  dotenv.config();
   const { id } = useParams();
-  const API_KEY = "db75be3f6da59e6c54d0b9f568d19d16";
   const [movieDetails, setMovieDetails] = useState([]);
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     )
       .then((response) => {
         return response.json();
       })
       .then((data) => {
         setMovieDetails(data);
-        
       });
   }, [id]);
 
@@ -27,7 +27,6 @@ function MovieDetails() {
       unique_countries.push(country.origin_country)
     );
   const unique = [...new Set(unique_countries)];
-  
 
   return (
     <div className={styles.movie_details}>
@@ -46,34 +45,30 @@ function MovieDetails() {
               movieDetails?.original_name}
           </h1>
           <div className={styles.details}>
-          <div className={styles.sub__items}>
-            {movieDetails.spoken_languages &&
-              movieDetails.spoken_languages.map((language, i) => (
-                <h3 key={i}>{language.english_name}</h3>
-              ))}
-              
+            <div className={styles.sub__items}>
+              {movieDetails.spoken_languages &&
+                movieDetails.spoken_languages.map((language, i) => (
+                  <h3 key={i}>{language.english_name}</h3>
+                ))}
+            </div>
+            <div className={styles.sub__items}>
+              <p>Popularity : {movieDetails && movieDetails.popularity}</p>
+            </div>
+            <div className={styles.sub__items}>
+              {movieDetails.genres &&
+                movieDetails.genres.map((genre, i) => (
+                  <h3 key={i}>{genre.name}</h3>
+                ))}
+            </div>
+            <div className={styles.sub__items}>
+              <p> Release Date : {movieDetails && movieDetails.release_date}</p>
+            </div>
+            <div className={styles.sub__items}>
+              <p> Origin Countries : </p>
+              {unique && unique.map((country, i) => <h3 key={i}>{country}</h3>)}
+            </div>
           </div>
-          <div className={styles.sub__items}>
-            <p>Popularity : {movieDetails && movieDetails.popularity}</p>
-          </div>
-          <div className={styles.sub__items}>
-            {movieDetails.genres &&
-              movieDetails.genres.map((genre, i) => (
-                <h3 key={i}>{genre.name}</h3>
-              ))}
-          </div>
-          <div className={styles.sub__items}>
-            <p> Release Date : {movieDetails && movieDetails.release_date}</p>
-          </div>
-          <div className={styles.sub__items}>
-            <p> Origin Countries : {" "}</p>
-            {unique &&
-              unique.map((country, i) => (
-                <h3 key={i}>{country}</h3>
-              ))}
-          </div>
-          </div>
-          
+
           <div className={styles.sub__details}>
             <p>Vote Count : {movieDetails && movieDetails.vote_count}</p>
             <p>Vote Average : {movieDetails && movieDetails.vote_average}</p>
@@ -91,15 +86,14 @@ function MovieDetails() {
                 Homepage
               </button>
             )}
-            {/* <button className="banner__button">My List</button> */}
           </div>
-          <h1 className={styles.banner__movieDescription}>{movieDetails?.overview}</h1>
+          <h1 className={styles.banner__movieDescription}>
+            {movieDetails?.overview}
+          </h1>
         </div>
-
-        
       </header>
-      <RelatedMovies id={id}/>
-      <Review id={id}/>
+      <RelatedMovies id={id} />
+      <Review id={id} />
     </div>
   );
 }
